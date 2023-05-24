@@ -135,15 +135,18 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                             decoration: BoxDecoration(
                               color: Color((Random().nextDouble() * 0xFFFFFF)
                                       .toInt())
-                                  .withOpacity(0.7),
+                                  .withOpacity(0.4),
                               // border: Border.all(width: 1.5),
                               borderRadius: const BorderRadius.all(
-                                Radius.circular(12),
+                                Radius.circular(5),
                               ),
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(0.0, 2.0), //(x,y)
+                                  color: Color(
+                                          (Random().nextDouble() * 0xFFFFFF)
+                                              .toInt())
+                                      .withOpacity(0.2),
+                                  offset: const Offset(0.0, 2.5), //(x,y)
                                   blurRadius: 6.0,
                                 ),
                               ],
@@ -159,7 +162,7 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                                         : TextDecoration.none,
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   ),
                                 ),
                                 Text(
@@ -170,7 +173,7 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                                           : TextDecoration.none,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w300,
-                                      color: Colors.white),
+                                      color: Colors.black),
                                 ),
                                 Text(
                                   '${DateTime.parse(todoBox.getAt(index)!.dateOfCreation).day} - ${DateTime.parse(todoBox.getAt(index)!.dateOfCreation).month} - ${DateTime.parse(todoBox.getAt(index)!.dateOfCreation).year}',
@@ -180,7 +183,7 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                                           : TextDecoration.none,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w200,
-                                      color: Colors.white38),
+                                      color: Colors.black),
                                 ),
 
                                 // Consumer(builder: (context, ref, _) {

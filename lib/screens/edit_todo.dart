@@ -56,17 +56,17 @@ class _TodoDetailsPageState extends ConsumerState<TodoDetailsPage> {
                   height: 10,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  // height: MediaQuery.of(context).size.height / 1.5,
                   padding: const EdgeInsets.all(8.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       border: Border.all(width: 1.5),
                       borderRadius: BorderRadius.circular(12)),
                   child: CupertinoTextField(
+                    textAlign: TextAlign.start,
                     controller: descriptionController,
                     placeholder: widget.todo.description,
-                    // placeholderStyle: const TextStyle(color: Colors.black),
-                    // maxLines: 120,
+                    autofocus: false,
                     maxLines: 6,
                   ),
                 ),
@@ -103,6 +103,7 @@ class _TodoDetailsPageState extends ConsumerState<TodoDetailsPage> {
                                 dateOfCreation: widget.todo.dateOfCreation,
                               ));
                         }
+                        Navigator.pop(context);
                       }),
                 ),
               ],

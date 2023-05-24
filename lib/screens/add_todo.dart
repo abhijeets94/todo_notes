@@ -70,12 +70,15 @@ class _AddTodoState extends ConsumerState<AddTodo> {
                           //     "date": DateTime.now(),
                           //   },
                           // );
-                          final todos = Todo(
-                              title: titleController.text,
-                              description: descriptionController.text,
-                              status: false,
-                              dateOfCreation: DateTime.now().toString());
-                          todoBox.put(titleController.text, todos);
+                          if (titleController.text.isNotEmpty ||
+                              descriptionController.text.isNotEmpty) {
+                            final todos = Todo(
+                                title: titleController.text,
+                                description: descriptionController.text,
+                                status: false,
+                                dateOfCreation: DateTime.now().toString());
+                            todoBox.put(titleController.text, todos);
+                          }
                           Navigator.pop(context);
                         }),
                   )
