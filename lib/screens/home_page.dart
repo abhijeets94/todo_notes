@@ -81,6 +81,8 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                               builder: (_) => TodoDetailsPage(
                                 todo: todoBox.getAt(index)!,
                                 index: index,
+                                notesColor: Color(
+                                    (Random().nextDouble() * 0xFFFFFF).toInt()),
                               ),
                             ),
                           );
@@ -143,10 +145,10 @@ class _HomePageConsmerState extends ConsumerState<HomePage> {
                               boxShadow: [
                                 BoxShadow(
                                   color: Color(
-                                          (Random().nextDouble() * 0xFFFFFF)
+                                          (Random().nextDouble() * 0xF00F00)
                                               .toInt())
                                       .withOpacity(0.2),
-                                  offset: const Offset(0.0, 2.5), //(x,y)
+                                  offset: const Offset(0.0, 1.5), //(x,y)
                                   blurRadius: 6.0,
                                 ),
                               ],

@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
 import '../models/task.dart';
 
 class TodoDetailsPage extends ConsumerStatefulWidget {
-  TodoDetailsPage({super.key, required this.todo, required this.index});
+  TodoDetailsPage(
+      {super.key,
+      required this.todo,
+      required this.index,
+      required this.notesColor});
   Todo todo;
   int index;
+  Color notesColor;
 
   @override
   ConsumerState<TodoDetailsPage> createState() => _TodoDetailsPageState();
@@ -32,9 +38,12 @@ class _TodoDetailsPageState extends ConsumerState<TodoDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
+      backgroundColor: widget.notesColor.withOpacity(0.9),
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: widget.notesColor.withOpacity(0.9),
         automaticallyImplyLeading: true,
         brightness: Brightness.dark,
+        border: Border.all(color: Colors.transparent),
       ),
       child: SafeArea(
         child: Padding(
@@ -46,11 +55,16 @@ class _TodoDetailsPageState extends ConsumerState<TodoDetailsPage> {
                     padding: const EdgeInsets.all(8.0),
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1.5),
+                        // border: Border.all(width: 1.5),
                         borderRadius: BorderRadius.circular(12)),
                     child: CupertinoTextField(
                       controller: titleController,
-                      placeholder: widget.todo.title,
+                      placeholder: widget.todo.title.isEmpty
+                          ? "Title"
+                          : widget.todo.title,
+                      style: const TextStyle(fontSize: 35),
+                      decoration:
+                          const BoxDecoration(shape: BoxShape.rectangle),
                     )),
                 const SizedBox(
                   height: 10,
@@ -60,23 +74,39 @@ class _TodoDetailsPageState extends ConsumerState<TodoDetailsPage> {
                   padding: const EdgeInsets.all(8.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      border: Border.all(width: 1.5),
+                      // border: Border.all(width: 1.5),
                       borderRadius: BorderRadius.circular(12)),
                   child: CupertinoTextField(
                     textAlign: TextAlign.start,
                     controller: descriptionController,
-                    placeholder: widget.todo.description,
+                    placeholder: widget.todo.description.isEmpty
+                        ? "Description"
+                        : widget.todo.description,
                     autofocus: false,
                     maxLines: 6,
+                    style: const TextStyle(fontSize: 30),
+                    decoration: const BoxDecoration(shape: BoxShape.rectangle),
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: CupertinoButton.filled(
-                      child: const Text("Save"),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: CupertinoButton(
+                      color: widget.notesColor.withAlpha(142),
+                      pressedOpacity: 0.2,
+                      child: const Text(
+                        "Save",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.black,
+                        ),
+                      ),
                       onPressed: () {
                         // setState(() {
                         //   todos[widget.index]["description"] =
